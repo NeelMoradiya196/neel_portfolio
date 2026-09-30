@@ -23,7 +23,7 @@ export default function Hero() {
           </p>
 
           {/* Headline */}
-          <h1 className="text-[clamp(3.25rem,10vw,8.5rem)] font-semibold tracking-[-0.05em] leading-[0.86]">
+          <h1 className="text-[clamp(3.25rem,10vw,8.5rem)] font-semibold tracking-[-0.05em] leading-[0.86] flex flex-wrap gap-x-[0.22em]">
             <span className="mask-word">
               <span className="hero-word" style={{ '--w': 0 }}>Neel</span>
             </span>
