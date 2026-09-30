@@ -4,7 +4,7 @@ import ScrollReveal from './ScrollReveal'
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-14 md:py-20">
+    <section id="skills" className="py-10 md:py-12">
       <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
         <ScrollReveal>
           <h2 className="text-3xl md:text-5xl font-semibold tracking-tight">Skills</h2>
