@@ -28,7 +28,7 @@ export default function Hero() {
               <span className="hero-word" style={{ '--w': 0 }}>Neel</span>
             </span>
             <span className="mask-word">
-              <span className="hero-word" style={{ '--w': 1 }}>Patel</span>
+              <span className="hero-word" style={{ '--w': 1 }}>Moradiya</span>
             </span>
           </h1>
 
@@ -52,7 +52,7 @@ export default function Hero() {
               View Projects
             </a>
             <a
-              href="/resume/Neel_Patel_Resume.pdf"
+              href="/resume/Neel_Moradiya_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full

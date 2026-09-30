@@ -1,11 +1,11 @@
 import ScrollReveal from './ScrollReveal'
-import { GraduationCap, Users, Flask, ChartLineUp } from '@phosphor-icons/react'
+import { GraduationCap, Brain, Flask, ChartLineUp } from '@phosphor-icons/react'
 
 const highlights = [
   { icon: GraduationCap, label: 'B.Tech IT', detail: 'KJ Somaiya Institute of Technology' },
-  { icon: Users, label: 'IEEE', detail: 'Organizing Admin' },
+  { icon: Brain, label: 'Data Science & ML', detail: 'Mining, Statistical Math, Modeling' },
   { icon: Flask, label: 'RehabTrack', detail: 'Live project with Medical College' },
-  { icon: ChartLineUp, label: 'Data Science', detail: 'ML, Mining, Statistical Math' },
+  { icon: ChartLineUp, label: 'Real Datasets', detail: 'Exploration & Pattern Discovery' },
 ]
 
 export default function About() {
@@ -20,16 +20,15 @@ export default function About() {
           {/* Bio */}
           <ScrollReveal delay={1} className="md:col-span-7">
             <p className="text-base md:text-lg text-[var(--color-muted)] leading-relaxed max-w-[62ch]">
-              I'm a B.Tech Information Technology student at KJ Somaiya Institute of
-              Technology with a deep fascination for uncovering patterns in data. My work
-              spans building ML models, exploring real-world datasets through statistical
-              analysis, and shipping full-stack applications.
+              I am an Information Technology undergraduate at KJ Somaiya Institute of
+              Technology with a keen interest in data science, exploring and working with real-life
+              datasets, data mining, statistical mathematics, and machine learning models.
             </p>
             <p className="mt-4 text-base md:text-lg text-[var(--color-muted)] leading-relaxed max-w-[62ch]">
-              As an Organizing Admin at IEEE, I coordinate technical events and workshops.
-              Currently, I'm working on RehabTrack, a live wearable rehabilitation device
-              project in collaboration with my HOD and KJ Somaiya Medical College, combining
-              IoT sensors with ML-based motion analysis for physiotherapy patients.
+              I love turning raw, complex data into meaningful insights and practical tools.
+              Currently, I am working on RehabTrack, a live wearable rehabilitation device project in
+              collaboration with my HOD and KJ Somaiya Medical College, integrating IoT sensors with
+              ML-driven motion tracking to support physiotherapy recovery.
             </p>
           </ScrollReveal>
 

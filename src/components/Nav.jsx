@@ -32,7 +32,7 @@ export default function Nav() {
           href="#"
           className="font-mono text-lg font-semibold tracking-tight text-[var(--color-ink)] hover:text-[var(--color-accent)] transition-colors"
         >
-          NP
+          NM
         </a>
 
         {/* Desktop links */}
@@ -48,7 +48,7 @@ export default function Nav() {
           ))}
           <ThemeToggle />
           <a
-            href="/resume/Neel_Patel_Resume.pdf"
+            href="/resume/Neel_Moradiya_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm font-medium px-4 py-2 rounded-full
@@ -85,7 +85,7 @@ export default function Nav() {
           <div className="flex items-center gap-4 pt-2">
             <ThemeToggle />
             <a
-              href="/resume/Neel_Patel_Resume.pdf"
+              href="/resume/Neel_Moradiya_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium px-4 py-2 rounded-full

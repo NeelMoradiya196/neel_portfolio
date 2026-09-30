@@ -5,7 +5,7 @@ const socials = [
   {
     icon: EnvelopeSimple,
     label: 'Email',
-    href: 'mailto:contact@neelpatel.dev',
+    href: 'mailto:contact@neelmoradiya.dev',
     display: 'Get in touch via email',
   },
   {
@@ -38,7 +38,7 @@ export default function Contact() {
             </p>
             <div className="mt-8">
               <a
-                href="/resume/Neel_Patel_Resume.pdf"
+                href="/resume/Neel_Moradiya_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full

@@ -11,10 +11,10 @@ const events = [
   },
   {
     period: 'Present',
-    title: 'Organizing Admin - IEEE',
-    org: 'KJ Somaiya Institute of Technology',
+    title: 'Data Science & Machine Learning Research',
+    org: 'Independent & Academic Projects',
     description:
-      'Coordinating technical events, workshops, and hackathons. Managing logistics and outreach for the IEEE student chapter.',
+      'Developing computer vision and deep learning pipelines, exploring real-world datasets with statistical methods, and building intelligent predictive systems.',
   },
   {
     period: 'Ongoing',
