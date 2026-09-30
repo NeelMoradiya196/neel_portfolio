@@ -24,7 +24,7 @@ const socials = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 md:py-32">
+    <section id="contact" className="py-14 md:py-20">
       <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
         <div className="grid md:grid-cols-12 gap-10 md:gap-14 items-start">
           {/* Left - Headline */}

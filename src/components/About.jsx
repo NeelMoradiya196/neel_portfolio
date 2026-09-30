@@ -10,7 +10,7 @@ const highlights = [
 
 export default function About() {
   return (
-    <section id="about" className="py-24 md:py-32">
+    <section id="about" className="py-14 md:py-20">
       <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
         <ScrollReveal>
           <h2 className="text-3xl md:text-5xl font-semibold tracking-tight">About</h2>
