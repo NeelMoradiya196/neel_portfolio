@@ -1,0 +1,86 @@
+import ScrollReveal from './ScrollReveal'
+import { EnvelopeSimple, GithubLogo, LinkedinLogo } from '@phosphor-icons/react'
+
+const socials = [
+  {
+    icon: EnvelopeSimple,
+    label: 'Email',
+    href: 'mailto:contact@neelpatel.dev',
+    display: 'Get in touch via email',
+  },
+  {
+    icon: GithubLogo,
+    label: 'GitHub',
+    href: 'https://github.com',
+    display: 'github.com',
+  },
+  {
+    icon: LinkedinLogo,
+    label: 'LinkedIn',
+    href: 'https://linkedin.com',
+    display: 'linkedin.com',
+  },
+]
+
+export default function Contact() {
+  return (
+    <section id="contact" className="py-24 md:py-32">
+      <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
+        <div className="grid md:grid-cols-12 gap-10 md:gap-14 items-start">
+          {/* Left - Headline */}
+          <ScrollReveal className="md:col-span-6">
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight">
+              Let's connect
+            </h2>
+            <p className="mt-4 text-base md:text-lg text-[var(--color-muted)] leading-relaxed max-w-[48ch]">
+              Always open to discussing data science research, machine learning projects,
+              or software engineering opportunities. Feel free to reach out.
+            </p>
+            <div className="mt-8">
+              <a
+                href="/resume/Neel_Patel_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full
+                           bg-[var(--color-accent)] text-[var(--color-paper)] font-medium
+                           hover:opacity-90 transition-opacity active:scale-[0.98]"
+              >
+                Download Resume
+              </a>
+            </div>
+          </ScrollReveal>
+
+          {/* Right - Links */}
+          <div className="md:col-span-6 space-y-3">
+            {socials.map((s, i) => (
+              <ScrollReveal key={s.label} delay={i + 1}>
+                <a
+                  href={s.href}
+                  target={s.href.startsWith('mailto') ? undefined : '_blank'}
+                  rel={s.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+                  className="glass-panel rounded-2xl p-5 flex items-center justify-between
+                             hover:border-[var(--color-accent)] transition-colors group"
+                >
+                  <div className="flex items-center gap-4">
+                    <s.icon
+                      size={24}
+                      weight="duotone"
+                      className="text-[var(--color-accent)] group-hover:scale-110 transition-transform"
+                    />
+                    <div>
+                      <p className="text-sm font-semibold">{s.label}</p>
+                      <p className="text-xs text-[var(--color-muted)] mt-0.5">{s.display}</p>
+                    </div>
+                  </div>
+                  <span className="text-xs font-mono text-[var(--color-muted)] group-hover:text-[var(--color-accent)] transition-colors">
+                    ↗
+                  </span>
+                </a>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
