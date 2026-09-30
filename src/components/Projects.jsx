@@ -22,7 +22,7 @@ export default function Projects() {
                     <h3 className="text-xl font-semibold tracking-tight">{project.title}</h3>
                     <div className="flex items-center gap-2">
                       {project.status === 'live' && (
-                        <span className="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-full border border-emerald-500/40 text-emerald-400">
+                        <span className="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-full border border-emerald-500/40 text-emerald-600 dark:text-emerald-400 bg-emerald-500/10">
                           <span className="size-1.5 rounded-full bg-emerald-500 animate-ping" />
                           <span className="size-1.5 rounded-full bg-emerald-500 absolute" />
                           Live
