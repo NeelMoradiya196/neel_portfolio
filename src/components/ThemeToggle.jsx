@@ -2,28 +2,31 @@ import { useState, useEffect } from 'react'
 import { Sun, Moon } from '@phosphor-icons/react'
 
 export default function ThemeToggle() {
-  const [dark, setDark] = useState(true)
+  const [isDark, setIsDark] = useState(false)
 
   useEffect(() => {
     const saved = localStorage.getItem('theme')
-    if (saved === 'light') {
-      setDark(false)
-      document.documentElement.classList.add('tone-light')
-    } else if (!saved) {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      setDark(prefersDark)
-      if (!prefersDark) document.documentElement.classList.add('tone-light')
+    if (saved === 'dark') {
+      setIsDark(true)
+      document.documentElement.classList.add('dark')
+    } else if (saved === 'light') {
+      setIsDark(false)
+      document.documentElement.classList.remove('dark')
+    } else {
+      // Default to light mode (Vibram aesthetic)
+      setIsDark(false)
+      document.documentElement.classList.remove('dark')
     }
   }, [])
 
   const toggle = () => {
-    setDark((prev) => {
+    setIsDark((prev) => {
       const next = !prev
       if (next) {
-        document.documentElement.classList.remove('tone-light')
+        document.documentElement.classList.add('dark')
         localStorage.setItem('theme', 'dark')
       } else {
-        document.documentElement.classList.add('tone-light')
+        document.documentElement.classList.remove('dark')
         localStorage.setItem('theme', 'light')
       }
       return next
@@ -33,12 +36,13 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className="relative size-9 flex items-center justify-center rounded-full
-                 border border-[var(--color-line)] hover:border-[var(--color-accent)]
-                 transition-colors duration-300 cursor-pointer"
+      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+      className="size-10 flex items-center justify-center rounded-full
+                 border border-[var(--color-line)] bg-[var(--color-surface)] text-[var(--color-ink)]
+                 hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]
+                 transition-all duration-200 cursor-pointer shadow-sm"
     >
-      {dark ? <Sun size={18} weight="bold" /> : <Moon size={18} weight="bold" />}
+      {isDark ? <Sun size={18} weight="bold" /> : <Moon size={18} weight="bold" />}
     </button>
   )
 }

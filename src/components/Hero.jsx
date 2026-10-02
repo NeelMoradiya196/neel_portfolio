@@ -1,137 +1,206 @@
+import { useState } from 'react'
+import { ArrowUpRight, Waveform, Cpu, Sparkle } from '@phosphor-icons/react'
+
 export default function Hero() {
+  const [activeFilter, setActiveFilter] = useState('All')
+
   return (
-    <section className="relative min-h-[100dvh] flex items-center overflow-hidden">
-      <div className="max-w-[1240px] mx-auto w-full px-5 sm:px-8 pt-24 pb-12">
-        <div className="grid md:grid-cols-12 gap-6 items-center">
-          {/* Left: Massive condensed text + overlapping cards */}
-          <div className="md:col-span-7 relative">
-            {/* Massive headline */}
-            <h1 className="hero-massive text-[clamp(6rem,20vw,14rem)]">
-              <span className="mask-word">
-                <span className="hero-word" style={{ '--w': 0 }}>Neel</span>
-              </span>
-              <span className="mask-word">
-                <span className="hero-word" style={{ '--w': 1 }}>Moradiya</span>
-              </span>
-            </h1>
+    <section className="relative min-h-[100dvh] flex flex-col justify-center overflow-hidden pt-28 pb-16">
+      {/* Background Giant Watermark Typography (Vibram "COMFORT" style) */}
+      <div className="absolute inset-x-0 top-16 md:top-20 flex justify-center items-center pointer-events-none select-none z-0 overflow-hidden">
+        <h1
+          className="vibram-hero-title text-[clamp(6rem,22vw,16rem)] text-[var(--color-ink)] opacity-[0.06] dark:opacity-[0.08] tracking-tighter whitespace-nowrap text-center"
+        >
+          NEEL MORADIYA
+        </h1>
+      </div>
 
-            {/* Overlapping dashboard card */}
-            <div
-              className="rise editorial-card absolute -right-4 top-[18%] md:top-[22%] w-[220px] sm:w-[260px] p-4 z-10 float"
-              style={{ '--i': 3 }}
-            >
-              <div className="flex items-center gap-1.5 mb-3">
-                <span className="size-2 rounded-full bg-red-400" />
-                <span className="size-2 rounded-full bg-yellow-400" />
-                <span className="size-2 rounded-full bg-green-400" />
+      <div className="max-w-[1280px] mx-auto w-full px-5 sm:px-8 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          {/* Left Column: Flagship Project Showcase Card (like the Vibram Shoe Showcase) */}
+          <div className="lg:col-span-6 relative">
+            <div className="dark-showcase-card p-6 sm:p-8 float-subtle">
+              {/* Header badge */}
+              <div className="flex items-center justify-between gap-3 mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-medium">
+                  <span className="size-2 rounded-full bg-emerald-400 glow-pulse" />
+                  <span>LIVE RESEARCH & MEDICAL COLLAB</span>
+                </div>
+                <span className="text-xs font-mono text-slate-400">KJ Somaiya Med</span>
               </div>
-              <pre className="text-[10px] sm:text-xs font-mono leading-relaxed opacity-70 overflow-hidden">
-{`import torch
-model = Net()
-optim = Adam(model.parameters())
 
-for epoch in range(100):
-  loss = train(model, data)
-  print(f"Loss: {loss:.4f}")`}
-              </pre>
-            </div>
+              {/* Card Title & Spec */}
+              <div className="space-y-2 mb-6">
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
+                  REHABTRACK · WEARABLE DEVICE
+                </h3>
+                <p className="text-sm text-slate-300 leading-relaxed">
+                  Integrating multi-axis IMU sensors with machine learning motion analysis for patient physiotherapy recovery tracking.
+                </p>
+              </div>
 
-            {/* Stats card */}
-            <div
-              className="rise editorial-card absolute -right-8 md:right-4 bottom-[5%] md:bottom-[10%] w-[160px] p-4 z-10 float-slow"
-              style={{ '--i': 4, animationDelay: '2s' }}
-            >
-              <p className="text-3xl font-extrabold text-[var(--color-accent)]">9+</p>
-              <p className="text-xs opacity-60 mt-0.5 uppercase tracking-wider">Projects Shipped</p>
+              {/* Simulated Sensor Graph / Telemetry Visual */}
+              <div className="bg-black/40 rounded-xl p-4 border border-white/10 mb-6">
+                <div className="flex items-center justify-between text-xs font-mono text-slate-400 mb-3">
+                  <span className="flex items-center gap-1.5 text-amber-400">
+                    <Waveform size={15} weight="bold" />
+                    <span>Real-Time Motion Waveform</span>
+                  </span>
+                  <span>98.4% Accuracy</span>
+                </div>
+
+                {/* SVG Visualizer */}
+                <div className="h-20 w-full flex items-center">
+                  <svg className="w-full h-full overflow-visible" viewBox="0 0 400 80" fill="none">
+                    <path
+                      d="M0 40 Q 40 10, 80 40 T 160 40 T 240 15 T 320 65 T 400 40"
+                      stroke="#f59e0b"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M0 40 Q 40 10, 80 40 T 160 40 T 240 15 T 320 65 T 400 40 L 400 80 L 0 80 Z"
+                      fill="url(#grad)"
+                      opacity="0.25"
+                    />
+                    <defs>
+                      <linearGradient id="grad" x1="0" y1="0" x2="0" y2="80" gradientUnits="userSpaceOnUse">
+                        <stop stopColor="#f59e0b" />
+                        <stop offset="1" stopColor="#f59e0b" stopOpacity="0" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+              </div>
+
+              {/* Tag Selector (Vibram "Select Size" Style) */}
+              <div className="mb-6">
+                <p className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2.5">
+                  Core Technologies
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {['PyTorch', 'IoT Sensors', 'C++17', 'Signal ML'].map((tech, i) => (
+                    <span
+                      key={tech}
+                      className={`text-xs font-mono px-3.5 py-1.5 rounded-lg border transition-all ${
+                        i === 0
+                          ? 'bg-[var(--color-accent)] text-black font-bold border-[var(--color-accent)]'
+                          : 'bg-white/5 border-white/10 text-slate-300'
+                      }`}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action Button (Vibram "ADD TO CART" Style) */}
+              <a
+                href="#projects"
+                className="w-full py-3.5 rounded-xl bg-white text-black hover:bg-[var(--color-accent)] hover:text-black font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2 transition-all active:scale-[0.98] shadow-lg"
+              >
+                <span>View Full Project Case Study</span>
+                <ArrowUpRight size={18} weight="bold" />
+              </a>
             </div>
           </div>
 
-          {/* Right: Serif subheading + description + CTA */}
-          <div className="md:col-span-5 z-10">
-            <p
-              className="rise text-xs font-mono uppercase tracking-[0.3em] text-[var(--color-accent)] mb-4"
-              style={{ '--i': 0 }}
-            >
-              Data Science · ML · Software
-            </p>
+          {/* Right Column: Editorial Text & Thumbnails (like Vibram Right Panel) */}
+          <div className="lg:col-span-6 space-y-6">
+            <div className="space-y-4">
+              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-[var(--color-accent)] font-semibold">
+                <Cpu size={16} weight="bold" />
+                <span>Information Technology · KJSIEIT</span>
+              </div>
 
-            <h2
-              className="rise text-2xl sm:text-3xl md:text-4xl italic leading-tight"
-              style={{ fontFamily: 'var(--font-serif)', '--i': 1 }}
-            >
-              Building Intelligence from Data
-            </h2>
+              <h2 className="text-3xl sm:text-5xl font-normal leading-[1.1] text-[var(--color-ink)]">
+                Building <span className="vibram-serif italic font-bold">intelligence</span> from real-world data.
+              </h2>
 
-            <p
-              className="rise mt-4 text-sm sm:text-base text-[var(--color-muted)] leading-relaxed max-w-[44ch]"
-              style={{ '--i': 2 }}
-            >
-              B.Tech IT at KJ Somaiya Institute of Technology.
-              Exploring datasets, training ML models, and shipping
-              software that turns raw data into meaningful insight.
-            </p>
+              <p className="text-base sm:text-lg text-[var(--color-muted)] leading-relaxed max-w-[52ch]">
+                Hi, I'm <strong className="text-[var(--color-ink)] font-bold">Neel Moradiya</strong>. I specialize in data science, exploratory data analysis, statistical mathematics, and training machine learning models to solve complex, tangible problems.
+              </p>
+            </div>
 
-            {/* Skill pills */}
-            <div className="rise flex flex-wrap gap-2 mt-5" style={{ '--i': 3 }}>
-              {['Machine Learning', 'Data Mining', 'Python', 'PyTorch'].map((tag) => (
-                <span
-                  key={tag}
-                  className="text-xs font-mono px-3 py-1 rounded-full
-                             bg-[var(--color-sky)] text-[var(--color-accent)]
-                             border border-[var(--color-accent)]/20"
+            {/* Filter pills */}
+            <div className="flex flex-wrap gap-2 pt-2">
+              {['All', 'Machine Learning', 'Computer Vision', 'Deep Learning'].map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveFilter(cat)}
+                  className={`text-xs font-medium px-4 py-2 rounded-full border transition-all cursor-pointer ${
+                    activeFilter === cat
+                      ? 'bg-[var(--color-ink)] text-[var(--color-paper)] border-[var(--color-ink)] shadow-sm'
+                      : 'bg-[var(--color-surface)] text-[var(--color-muted)] border-[var(--color-line)] hover:border-[var(--color-accent)]'
+                  }`}
                 >
-                  {tag}
-                </span>
+                  {cat}
+                </button>
               ))}
             </div>
 
-            {/* CTA */}
-            <div className="rise mt-8 flex flex-wrap gap-3" style={{ '--i': 4 }}>
+            {/* Primary Action Buttons */}
+            <div className="flex flex-wrap gap-3 pt-2">
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full
-                           bg-[var(--color-ink)] text-[var(--color-paper)] font-bold
-                           uppercase tracking-wider text-sm
-                           hover:opacity-90 transition-opacity active:scale-[0.97]"
+                className="px-7 py-3.5 rounded-full bg-[var(--color-ink)] text-[var(--color-paper)] font-bold uppercase tracking-wider text-xs flex items-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-md"
               >
-                View Projects
+                <span>Explore Projects</span>
+                <ArrowUpRight size={16} weight="bold" />
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full
-                           border-2 border-[var(--color-ink)] text-[var(--color-ink)] font-bold
-                           uppercase tracking-wider text-sm
-                           hover:bg-[var(--color-ink)] hover:text-[var(--color-paper)]
-                           transition-all active:scale-[0.97]"
+                className="px-7 py-3.5 rounded-full border-2 border-[var(--color-line)] bg-[var(--color-surface)] text-[var(--color-ink)] font-bold uppercase tracking-wider text-xs hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] active:scale-95 transition-all"
               >
-                Contact Me
+                Get In Touch
               </a>
             </div>
 
-            {/* Thumbnail cards */}
-            <div className="rise grid grid-cols-2 gap-3 mt-8" style={{ '--i': 5 }}>
-              <div className="editorial-card rounded-xl p-3.5">
-                <span className="inline-flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-wider">
-                  <span className="size-1.5 rounded-full bg-emerald-400" />
-                  <span className="text-emerald-400">Live</span>
-                </span>
-                <p className="text-sm font-bold mt-1">RehabTrack</p>
-                <p className="text-xs opacity-50 mt-0.5">Wearable · ML · IoT</p>
-              </div>
-              <div className="editorial-card rounded-xl p-3.5">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-[var(--color-accent)]">Featured</span>
-                <p className="text-sm font-bold mt-1">Deepfake Detector</p>
-                <p className="text-xs opacity-50 mt-0.5">PyTorch · OpenCV</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            {/* Two Thumbnail Cards (like Vibram product detail thumbnails at bottom right) */}
+            <div className="pt-4 grid grid-cols-2 gap-3">
+              <a
+                href="#projects"
+                className="glass-panel rounded-2xl p-4 flex flex-col justify-between gap-3 group"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-[var(--color-accent)] font-semibold">
+                    Computer Vision
+                  </span>
+                  <ArrowUpRight size={14} className="text-[var(--color-muted)] group-hover:text-[var(--color-accent)] transition-colors" />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-[var(--color-ink)] group-hover:text-[var(--color-accent)] transition-colors">
+                    Deepfake Detector
+                  </p>
+                  <p className="text-xs text-[var(--color-muted)] mt-0.5">
+                    PyTorch · OpenCV
+                  </p>
+                </div>
+              </a>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30 motion-reduce:hidden">
-        <div className="w-px h-8 overflow-hidden">
-          <div className="w-px h-3 bg-[var(--color-ink)] scroll-line" />
+              <a
+                href="#projects"
+                className="glass-panel rounded-2xl p-4 flex flex-col justify-between gap-3 group"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-mono uppercase tracking-wider text-[var(--color-accent)] font-semibold">
+                    Data Pipeline
+                  </span>
+                  <ArrowUpRight size={14} className="text-[var(--color-muted)] group-hover:text-[var(--color-accent)] transition-colors" />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-[var(--color-ink)] group-hover:text-[var(--color-accent)] transition-colors">
+                    Process Mining
+                  </p>
+                  <p className="text-xs text-[var(--color-muted)] mt-0.5">
+                    PaddleOCR · scikit-learn
+                  </p>
+                </div>
+              </a>
+            </div>
+
+          </div>
         </div>
       </div>
     </section>
