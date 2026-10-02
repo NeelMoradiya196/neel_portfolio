@@ -7,10 +7,10 @@ export default function Skills() {
     <section id="skills" className="py-10 md:py-12">
       <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
         <ScrollReveal>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight">Skills</h2>
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>Skills</h2>
         </ScrollReveal>
 
-        <div className="mt-10 grid md:grid-cols-3 gap-5">
+        <div className="mt-8 grid md:grid-cols-3 gap-4">
           {skillCategories.map((cat, catIdx) => (
             <ScrollReveal key={cat.title} delay={catIdx + 1}>
               <SpotlightCard className="p-6 h-full">

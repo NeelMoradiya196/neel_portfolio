@@ -13,10 +13,10 @@ export default function About() {
     <section id="about" className="py-10 md:py-12">
       <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
         <ScrollReveal>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight">About</h2>
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>About</h2>
         </ScrollReveal>
 
-        <div className="mt-10 grid md:grid-cols-12 gap-10 md:gap-14">
+        <div className="mt-8 grid md:grid-cols-12 gap-8 md:gap-12">
           {/* Bio */}
           <ScrollReveal delay={1} className="md:col-span-7">
             <p className="text-base md:text-lg text-[var(--color-muted)] leading-relaxed max-w-[62ch]">

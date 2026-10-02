@@ -26,10 +26,10 @@ export default function Contact() {
   return (
     <section id="contact" className="py-10 md:py-12">
       <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
-        <div className="grid md:grid-cols-12 gap-10 md:gap-14 items-start">
+        <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
           {/* Left - Headline */}
           <ScrollReveal className="md:col-span-6">
-            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
               Let's connect
             </h2>
             <p className="mt-4 text-base md:text-lg text-[var(--color-muted)] leading-relaxed max-w-[48ch]">
@@ -42,7 +42,7 @@ export default function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full
-                           bg-[var(--color-accent)] text-[var(--color-paper)] font-medium
+                           bg-[var(--color-accent)] text-white font-medium
                            hover:opacity-90 transition-opacity active:scale-[0.98]"
               >
                 Download Resume
@@ -73,7 +73,7 @@ export default function Contact() {
                     </div>
                   </div>
                   <span className="text-xs font-mono text-[var(--color-muted)] group-hover:text-[var(--color-accent)] transition-colors">
-                    ↗
+                    &#8599;
                   </span>
                 </a>
               </ScrollReveal>

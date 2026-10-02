@@ -44,7 +44,7 @@ function TimelineItem({ event, index }) {
         <span className="text-xs font-mono uppercase tracking-wide text-[var(--color-accent)]">
           {event.period}
         </span>
-        <h3 className="text-base font-semibold mt-1">{event.title}</h3>
+        <h3 className="text-base font-semibold mt-1" style={{ fontFamily: 'var(--font-display)' }}>{event.title}</h3>
         <p className="text-sm text-[var(--color-muted)] mt-0.5">{event.org}</p>
         <p className="text-sm text-[var(--color-muted)] leading-relaxed mt-2">
           {event.description}
@@ -59,10 +59,10 @@ export default function Timeline() {
     <section id="experience" className="py-10 md:py-12">
       <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
         <ScrollReveal>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight">Experience</h2>
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>Experience</h2>
         </ScrollReveal>
 
-        <div className="mt-10 max-w-xl">
+        <div className="mt-8 max-w-xl">
           {events.map((event, i) => (
             <TimelineItem key={event.title} event={event} index={i} />
           ))}

@@ -1,28 +1,28 @@
 import { projects } from '../data/projects'
 import SpotlightCard from './SpotlightCard'
 import ScrollReveal from './ScrollReveal'
-import { ArrowUpRight, CircleNotch } from '@phosphor-icons/react'
+import { ArrowUpRight } from '@phosphor-icons/react'
 
 export default function Projects() {
   return (
     <section id="projects" className="py-10 md:py-12">
       <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
         <ScrollReveal>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight">Projects</h2>
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>Projects</h2>
         </ScrollReveal>
 
         {/* Featured projects */}
-        <div className="mt-10 grid md:grid-cols-2 gap-5">
+        <div className="mt-8 grid md:grid-cols-2 gap-4">
           {projects
             .filter((p) => p.featured)
             .map((project, i) => (
               <ScrollReveal key={project.title} delay={i + 1}>
                 <SpotlightCard className="p-6 h-full flex flex-col">
                   <div className="flex items-start justify-between gap-3">
-                    <h3 className="text-xl font-semibold tracking-tight">{project.title}</h3>
+                    <h3 className="text-xl font-semibold tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>{project.title}</h3>
                     <div className="flex items-center gap-2">
                       {project.status === 'live' && (
-                        <span className="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-full border border-emerald-500/40 text-emerald-600 dark:text-emerald-400 bg-emerald-500/10">
+                        <span className="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-full border border-emerald-500/40 text-emerald-400 bg-emerald-500/10">
                           <span className="size-1.5 rounded-full bg-emerald-500 animate-ping" />
                           <span className="size-1.5 rounded-full bg-emerald-500 absolute" />
                           Live
@@ -63,14 +63,14 @@ export default function Projects() {
         </div>
 
         {/* Other projects */}
-        <div className="mt-5 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {projects
             .filter((p) => !p.featured)
             .map((project, i) => (
               <ScrollReveal key={project.title} delay={i + 1}>
                 <SpotlightCard className="p-5 h-full flex flex-col">
                   <div className="flex items-start justify-between gap-3">
-                    <h3 className="text-base font-semibold tracking-tight">{project.title}</h3>
+                    <h3 className="text-base font-semibold tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>{project.title}</h3>
                     <a
                       href="#"
                       className="size-7 shrink-0 flex items-center justify-center rounded-full
