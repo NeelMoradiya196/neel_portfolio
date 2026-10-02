@@ -1,59 +1,79 @@
-import { ArrowRight } from '@phosphor-icons/react'
+import GlassOrb from './GlassOrb'
+import { ArrowDown } from '@phosphor-icons/react'
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[100dvh] flex flex-col justify-between overflow-hidden pt-28 sm:pt-36">
-      <div className="max-w-[1240px] mx-auto w-full px-5 sm:px-8 text-center relative z-10">
-        {/* Top Pill Badge (like Buildora "Premium Architecture Studio") */}
-        <div className="appear inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[var(--color-surface)] border border-[var(--color-accent)]/30 text-[var(--color-accent)] text-xs font-medium mb-6 shadow-sm">
-          <span className="size-1.5 rounded-full bg-[var(--color-accent)] animate-pulse" />
-          <span>Data Science & Machine Learning Explorer</span>
+    <section className="relative min-h-[100dvh] flex items-center overflow-hidden pt-16">
+      {/* Stars */}
+      <div className="stars absolute inset-0" />
+
+      {/* Meteors */}
+      <div className="meteor absolute top-[18%] right-[4%]" style={{ '--len': '120px', animationDelay: '1.2s' }} />
+      <div className="meteor absolute top-[32%] right-[-8%]" style={{ '--len': '180px', animationDelay: '3.8s' }} />
+      <div className="meteor absolute top-[12%] right-[20%]" style={{ '--len': '100px', animationDelay: '6.5s' }} />
+
+      <div className="max-w-[1240px] mx-auto w-full px-5 sm:px-8 flex flex-col md:flex-row items-center gap-10 md:gap-14">
+        {/* Left - Text */}
+        <div className="flex-1 order-2 md:order-1">
+          {/* Eyebrow */}
+          <p
+            className="appear text-xs sm:text-sm font-mono uppercase tracking-[0.25em] text-[var(--color-muted)] mb-5"
+          >
+            B.Tech IT - KJ Somaiya Institute of Technology
+          </p>
+
+          {/* Headline */}
+          <h1 className="text-[clamp(3.25rem,10vw,8.5rem)] font-semibold tracking-[-0.05em] leading-[0.86] flex flex-wrap gap-x-[0.22em]">
+            <span className="mask-word">
+              <span className="hero-word" style={{ '--w': 0 }}>Neel</span>
+            </span>
+            <span className="mask-word">
+              <span className="hero-word" style={{ '--w': 1 }}>Moradiya</span>
+            </span>
+          </h1>
+
+          {/* Subtext */}
+          <p
+            className="rise mt-6 text-base sm:text-lg text-[var(--color-muted)] leading-relaxed max-w-[58ch]"
+            style={{ '--i': 2 }}
+          >
+            Data science explorer building ML models,
+            mining real-world datasets, and shipping software.
+          </p>
+
+          {/* CTAs */}
+          <div className="rise flex flex-wrap gap-3 mt-8" style={{ '--i': 3 }}>
+            <a
+              href="#projects"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full
+                         bg-[var(--color-accent)] text-[var(--color-paper)] font-medium
+                         hover:opacity-90 transition-opacity active:scale-[0.98]"
+            >
+              View Projects
+            </a>
+            <a
+              href="/resume/Neel_Moradiya_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full
+                         border border-[var(--color-line)] text-[var(--color-ink)] font-medium
+                         hover:border-[var(--color-accent)] transition-colors active:scale-[0.98]"
+            >
+              Resume
+            </a>
+          </div>
         </div>
 
-        {/* Main Headline (like Buildora "Building exceptional spaces that stand the test of time.") */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[var(--color-ink)] leading-[1.08] max-w-[20ch] mx-auto">
-          Building intelligent models that stand the test of time.
-        </h1>
-
-        {/* Subtitle */}
-        <p
-          className="rise mt-5 text-base sm:text-lg text-[var(--color-muted)] max-w-[56ch] mx-auto leading-relaxed"
-          style={{ '--i': 1 }}
-        >
-          B.Tech IT undergraduate at KJ Somaiya Institute of Technology. Exploring real-life datasets, training machine learning models, and engineering software with enduring impact.
-        </p>
-
-        {/* CTA Buttons (like Buildora "Explore Our Projects →" & "Start a Conversation") */}
-        <div
-          className="rise mt-8 flex flex-wrap items-center justify-center gap-3.5"
-          style={{ '--i': 2 }}
-        >
-          <a
-            href="#projects"
-            className="px-7 py-3.5 rounded-full bg-[var(--color-accent)] text-[#101319] hover:opacity-90 font-semibold text-sm flex items-center gap-2 transition-all active:scale-[0.98] shadow-lg"
-          >
-            <span>Explore Our Projects</span>
-            <ArrowRight size={16} weight="bold" />
-          </a>
-          <a
-            href="#contact"
-            className="px-7 py-3.5 rounded-full bg-[var(--color-surface)] text-[var(--color-ink)] border border-[var(--color-line)] hover:border-[var(--color-accent)] font-semibold text-sm transition-all active:scale-[0.98]"
-          >
-            <span>Start a Conversation</span>
-          </a>
+        {/* Right - Orb */}
+        <div className="flex-shrink-0 order-1 md:order-2">
+          <GlassOrb />
         </div>
       </div>
 
-      {/* Signature 3D Undulating Iridescent Wave Visual (The bottom half from the reference image) */}
-      <div className="relative w-full max-w-[1280px] mx-auto mt-10 sm:mt-12 px-4 sm:px-8">
-        <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[var(--color-line)] shadow-2xl">
-          <img
-            src="/images/hero-wave.jpg"
-            alt="3D Iridescent Liquid Wave Landscape"
-            className="w-full h-[260px] sm:h-[380px] md:h-[480px] object-cover object-bottom"
-          />
-          {/* Subtle blend gradient at the top edge */}
-          <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-[var(--color-paper)]/60 pointer-events-none" />
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 motion-reduce:hidden">
+        <div className="w-px h-8 overflow-hidden">
+          <div className="w-px h-3 bg-[var(--color-accent)] scroll-line" />
         </div>
       </div>
     </section>

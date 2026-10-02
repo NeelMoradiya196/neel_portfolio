@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
-/* ── Design tokens (Buildora Dark Minimalist System) ── */
+/* ── Design tokens ── */
 @theme {
   --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, monospace;
-  --color-paper: #101319;
-  --color-surface: #161c26;
-  --color-ink: #f8fafc;
+  --color-paper: #0f172a;
+  --color-surface: #ffffff0d;
+  --color-ink: #e2e8f0;
   --color-muted: #94a3b8;
-  --color-accent: #dfbe96;
-  --color-accent-glow: rgba(223, 190, 150, 0.25);
-  --color-line: rgba(255, 255, 255, 0.08);
-  --color-sky: rgba(223, 190, 150, 0.12);
+  --color-accent: #38bdf8;
+  --color-accent-glow: #38bdf840;
+  --color-line: #ffffff15;
+  --color-sky: #38bdf81a;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -31,7 +31,7 @@ body {
 
 ::selection {
   background-color: var(--color-accent);
-  color: #101319;
+  color: #fff;
 }
 
 section[id] {
@@ -46,14 +46,14 @@ section[id] {
 
 /* ── Light mode ── */
 .tone-light {
-  --color-paper: #f8f9fa;
-  --color-surface: #ffffff;
-  --color-ink: #0f172a;
-  --color-muted: #64748b;
-  --color-accent: #b88e5d;
-  --color-accent-glow: rgba(184, 142, 93, 0.25);
-  --color-line: #e2e8f0;
-  --color-sky: rgba(184, 142, 93, 0.1);
+  --color-paper: #f1f5f9;       /* Crisp, minimal slate mist */
+  --color-surface: #ffffffcc;    /* Pure frosted glass element */
+  --color-ink: #0f172a;          /* Deep slate-900 typography */
+  --color-muted: #475569;        /* Balanced slate-600 secondary text */
+  --color-accent: #0284c7;       /* Refined modern sky-600 */
+  --color-accent-glow: #0284c730;/* Soft atmospheric glow */
+  --color-line: #0f172a12;       /* Subtle boundary lines */
+  --color-sky: #0284c712;        /* Pill and badge surface tint */
   color-scheme: light;
 }
 
@@ -62,32 +62,130 @@ section[id] {
   background: var(--color-paper);
 }
 
+/* ── Stars background ── */
+.stars,
+.stars::after {
+  z-index: -1;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.stars {
+  opacity: 0.6;
+  background-image:
+    radial-gradient(1px 1px at 23px 41px, #fff, transparent),
+    radial-gradient(1px 1px at 97px 131px, #dbeeff, transparent),
+    radial-gradient(1.5px 1.5px at 151px 63px, #fff, transparent),
+    radial-gradient(1px 1px at 211px 179px, #cfe6ff, transparent),
+    radial-gradient(1px 1px at 267px 23px, #fff, transparent),
+    radial-gradient(1px 1px at 59px 211px, #fff, transparent),
+    radial-gradient(1px 1px at 340px 90px, #38bdf8, transparent),
+    radial-gradient(1px 1px at 420px 150px, #fff, transparent);
+  background-size: 460px 240px;
+}
+
+.stars::after {
+  content: "";
+  will-change: opacity;
+  background-image:
+    radial-gradient(1.5px 1.5px at 71px 83px, #fff, transparent),
+    radial-gradient(1px 1px at 183px 17px, #e6f3ff, transparent),
+    radial-gradient(2px 2px at 131px 197px, #fff, transparent),
+    radial-gradient(1px 1px at 310px 60px, #38bdf8, transparent);
+  background-size: 360px 300px;
+  animation: 5s ease-in-out infinite alternate twinkle;
+}
+
+.tone-light .stars {
+  opacity: 0;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+
+/* ── Cloud decoration ── */
+.cloud {
+  z-index: -1;
+  pointer-events: none;
+  will-change: transform;
+  background: radial-gradient(closest-side, #38bdf815, #38bdf808 55%, transparent);
+  border-radius: 9999px;
+  animation: 38s ease-in-out infinite alternate drift;
+  position: absolute;
+}
+
+.tone-light .cloud {
+  background: radial-gradient(closest-side, #0369a115, #0369a108 55%, transparent);
+}
+
+@keyframes drift {
+  0% { transform: translate(-4%); }
+  100% { transform: translate(6%, -6%); }
+}
+
+/* ── Glass orb ── */
+.glass-orb {
+  opacity: 0.9;
+  background:
+    radial-gradient(circle at 30% 24%, #ffffffee 0, #ffffffee 5%, transparent 19%),
+    radial-gradient(circle at 36% 34%, #e0f2fe, #7dd3fc 22%, #0ea5e9 55%, #0369a1 82%, #0c4a6e);
+  box-shadow:
+    inset -14px -20px 40px #0c4a6e59,
+    0 24px 50px -20px #0ea5e973;
+  border-radius: 50%;
+}
+
+.tone-light .glass-orb {
+  background:
+    radial-gradient(circle at 30% 24%, #ffffffee 0, #ffffffee 5%, transparent 19%),
+    radial-gradient(circle at 36% 34%, #f0f9ff, #bae6fd 22%, #38bdf8 55%, #0284c7 82%, #075985);
+}
+
 /* ── Glass panel ── */
 .glass-panel {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)), #161c26;
-  border: 1px solid var(--color-line);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: linear-gradient(145deg, #ffffff10, #ffffff05), #ffffff08;
+  border: 1px solid #ffffff18;
+  box-shadow:
+    inset 0 1px #ffffff15,
+    0 30px 70px -30px #00051eb3;
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
 }
 
 .tone-light .glass-panel {
-  background: #ffffff;
-  border-color: #e2e8f0;
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.06);
+  background: linear-gradient(145deg, #ffffffd9, #ffffff99);
+  border-color: #0f172a0f;
+  box-shadow:
+    inset 0 1px #ffffff,
+    0 20px 40px -20px #0f172a14;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .glass-panel {
+    background: #1e293bee;
+  }
 }
 
 /* ── Nav glass ── */
 .nav-glass {
-  background: rgba(16, 19, 25, 0.85);
-  border-bottom: 1px solid var(--color-line);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: color-mix(in srgb, var(--color-paper) 70%, transparent);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid #ffffff15;
+  box-shadow:
+    inset 0 1px #ffffff10,
+    0 14px 34px -16px #00051eb3;
 }
 
 .tone-light .nav-glass {
-  background: rgba(248, 249, 250, 0.85);
-  border-bottom-color: #e2e8f0;
+  background: color-mix(in srgb, var(--color-paper) 85%, transparent);
+  border-color: #0f172a12;
+  box-shadow:
+    inset 0 1px #ffffff,
+    0 10px 30px -15px #0f172a12;
 }
 
 /* ── Spotlight card (mouse-tracking glow) ── */
@@ -136,15 +234,47 @@ section[id] {
   opacity: 1;
 }
 
+/* ── Meteor ── */
+.meteor {
+  width: var(--len, 140px);
+  opacity: 0;
+  will-change: transform, opacity;
+  background: linear-gradient(90deg, #fff, #38bdf880 30%, transparent);
+  border-radius: 9999px;
+  height: 1.5px;
+  animation: 4s cubic-bezier(0.4, 0, 0.9, 1) infinite meteor;
+  position: absolute;
+}
+
+.meteor::before {
+  content: "";
+  background: #fff;
+  border-radius: 9999px;
+  width: 3px;
+  height: 3px;
+  position: absolute;
+  top: 50%;
+  left: -1px;
+  transform: translateY(-50%);
+  box-shadow: 0 0 6px 2px #38bdf8e6;
+}
+
+@keyframes meteor {
+  0% { opacity: 0; transform: translate(0) rotate(-24deg); }
+  6% { opacity: 1; }
+  48% { opacity: 0; transform: translate(-520px, 232px) rotate(-24deg); }
+  100% { opacity: 0; transform: translate(-520px, 232px) rotate(-24deg); }
+}
+
 /* ── Hero word reveal ── */
 .hero-word {
   animation: mask-up 1.2s var(--ease-out-expo) both;
-  animation-delay: calc(var(--w, 0) * 0.15s + 0.3s);
+  animation-delay: calc(var(--w, 0) * 0.12s + 0.4s);
   display: block;
 }
 
 @keyframes mask-up {
-  0% { transform: translateY(115%); opacity: 0; }
+  0% { transform: translateY(110%); opacity: 0; }
   100% { transform: none; opacity: 1; }
 }
 
@@ -182,7 +312,38 @@ section[id] {
   100% { opacity: 1; transform: none; }
 }
 
-/* ── Appear ── */
+/* ── Floating ── */
+.float {
+  animation: 7s ease-in-out infinite float;
+}
+
+.float-slow {
+  animation: 10s ease-in-out infinite float;
+}
+
+@keyframes float {
+  50% { transform: translateY(-14px); }
+}
+
+/* ── Dawn entry ── */
+.dawn {
+  animation: 1.9s cubic-bezier(0.4, 0, 0.2, 1) 0.15s both dawn;
+}
+
+@keyframes dawn {
+  0% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+.sunrise {
+  animation: sunrise 2.4s var(--ease-out-expo) both;
+}
+
+@keyframes sunrise {
+  0% { opacity: 0.4; transform: translateY(38%) scale(0.82); }
+  100% { opacity: 1; transform: none; }
+}
+
 .appear {
   animation: 1.6s ease-out 0.5s both appear;
 }
@@ -203,10 +364,10 @@ section[id] {
 .is-shown .timeline-dot {
   background-color: var(--color-accent);
   transform: none;
-  box-shadow: 0 0 0 5px var(--color-accent-glow), 0 0 18px var(--color-accent);
+  box-shadow: 0 0 0 5px #38bdf826, 0 0 18px #38bdf8b3;
 }
 
-/* ── Glow pulse ── */
+/* ── Glow pulse for live badge ── */
 @keyframes glow-pulse {
   0%, 100% { box-shadow: 0 0 8px var(--color-accent-glow), 0 0 20px var(--color-accent-glow); }
   50% { box-shadow: 0 0 16px var(--color-accent-glow), 0 0 40px var(--color-accent-glow); }
@@ -214,6 +375,18 @@ section[id] {
 
 .glow-pulse {
   animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* ── Scroll cue (the bouncing line in hero) ── */
+.scroll-line {
+  animation: scroll-line 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes scroll-line {
+  0% { opacity: 0; transform: translateY(-100%); }
+  25% { opacity: 1; }
+  75% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(300%); }
 }
 
 /* ── Nav appear ── */
@@ -224,8 +397,13 @@ section[id] {
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .rise, .hero-word, .appear, .nav-appear, .glow-pulse {
+  .rise, .cloud, .stars::after, .hero-word,
+  .sunrise, .appear, .nav-appear, .float,
+  .float-slow, .scroll-line, .glow-pulse {
     animation: none;
+  }
+  .meteor, .dawn {
+    display: none;
   }
   .reveal {
     opacity: 1;

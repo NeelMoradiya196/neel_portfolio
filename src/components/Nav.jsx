@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
-import { List, X, ArrowUpRight } from '@phosphor-icons/react'
+import { List, X } from '@phosphor-icons/react'
 import ThemeToggle from './ThemeToggle'
 
 const links = [
-  { label: 'Home', href: '#' },
   { label: 'About', href: '#about' },
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
@@ -14,104 +13,86 @@ const links = [
 export default function Nav() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [active, setActive] = useState('Home')
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 30)
+    const handler = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', handler, { passive: true })
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
   return (
     <nav
-      className={`nav-appear fixed top-0 inset-x-0 z-40 transition-all duration-300 ${
-        scrolled ? 'nav-glass shadow-md' : 'bg-transparent'
+      className={`nav-appear fixed top-0 inset-x-0 z-40 transition-all duration-500 ${
+        scrolled ? 'nav-glass' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-[1240px] mx-auto flex items-center justify-between h-20 px-5 sm:px-8">
-        {/* Logo / Brand Name (like Buildora in the image) */}
+      <div className="max-w-[1240px] mx-auto flex items-center justify-between h-16 px-5 sm:px-8">
+        {/* Logo */}
         <a
           href="#"
-          className="text-xl font-bold tracking-tight text-[var(--color-ink)] hover:opacity-90 transition-opacity"
+          className="font-mono text-lg font-semibold tracking-tight text-[var(--color-ink)] hover:text-[var(--color-accent)] transition-colors"
         >
-          Neel Moradiya
+          NM
         </a>
 
-        {/* Center Desktop Links */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Desktop links */}
+        <div className="hidden md:flex items-center gap-7">
           {links.map((l) => (
             <a
-              key={l.label}
+              key={l.href}
               href={l.href}
-              onClick={() => setActive(l.label)}
-              className={`text-sm font-medium transition-colors relative py-1 ${
-                active === l.label
-                  ? 'text-[var(--color-ink)] font-semibold after:absolute after:bottom-0 after:inset-x-0 after:h-[2px] after:bg-[var(--color-ink)] after:rounded-full'
-                  : 'text-[var(--color-muted)] hover:text-[var(--color-ink)]'
-              }`}
+              className="text-sm font-medium text-[var(--color-muted)] hover:text-[var(--color-ink)] transition-colors"
             >
               {l.label}
             </a>
           ))}
-        </div>
-
-        {/* Right CTA Button (like "Start a project →" in Buildora) */}
-        <div className="hidden md:flex items-center gap-3">
           <ThemeToggle />
           <a
             href="/resume/Neel_Moradiya_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-semibold px-5 py-2.5 rounded-full
-                       bg-[var(--color-surface)] border border-[var(--color-line)] text-[var(--color-ink)]
-                       hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]
-                       transition-all active:scale-[0.98] shadow-sm flex items-center gap-1.5"
+            className="text-sm font-medium px-4 py-2 rounded-full
+                       bg-[var(--color-accent)] text-[var(--color-paper)]
+                       hover:opacity-90 transition-opacity active:scale-[0.98]"
           >
-            <span>Resume</span>
-            <ArrowUpRight size={14} weight="bold" />
+            Resume
           </a>
         </div>
 
-        {/* Mobile menu toggle */}
-        <div className="flex md:hidden items-center gap-2">
-          <ThemeToggle />
-          <button
-            onClick={() => setOpen(!open)}
-            className="size-10 flex items-center justify-center rounded-full
-                       border border-[var(--color-line)] bg-[var(--color-surface)]
-                       hover:bg-[var(--color-line)] transition-colors cursor-pointer"
-            aria-label="Toggle navigation"
-          >
-            {open ? <X size={20} /> : <List size={20} />}
-          </button>
-        </div>
+        {/* Mobile toggle */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="md:hidden size-9 flex items-center justify-center cursor-pointer"
+          aria-label="Toggle menu"
+        >
+          {open ? <X size={22} /> : <List size={22} />}
+        </button>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-[var(--color-surface)] border-b border-[var(--color-line)] px-6 py-6 space-y-4 shadow-2xl">
+        <div className="md:hidden nav-glass border-t border-[var(--color-line)] px-5 py-6 space-y-4">
           {links.map((l) => (
             <a
-              key={l.label}
+              key={l.href}
               href={l.href}
-              onClick={() => {
-                setActive(l.label)
-                setOpen(false)
-              }}
-              className="block text-base font-medium text-[var(--color-ink)] hover:text-[var(--color-accent)] transition-colors"
+              onClick={() => setOpen(false)}
+              className="block text-base font-medium text-[var(--color-muted)] hover:text-[var(--color-ink)] transition-colors"
             >
               {l.label}
             </a>
           ))}
-          <div className="pt-4 border-t border-[var(--color-line)] flex items-center justify-between">
-            <span className="text-xs text-[var(--color-muted)]">Data Science & ML</span>
+          <div className="flex items-center gap-4 pt-2">
+            <ThemeToggle />
             <a
               href="/resume/Neel_Moradiya_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-bold px-4 py-2 rounded-full bg-[var(--color-accent)] text-[#101319]"
+              className="text-sm font-medium px-4 py-2 rounded-full
+                         bg-[var(--color-accent)] text-[var(--color-paper)]
+                         hover:opacity-90 transition-opacity"
             >
-              Resume →
+              Resume
             </a>
           </div>
         </div>
