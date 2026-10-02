@@ -8,7 +8,12 @@ export default function Skills() {
       <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
         <ScrollReveal>
           <p className="text-xs font-mono uppercase tracking-[0.3em] text-[var(--color-accent)] mb-3">Skills</p>
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight uppercase">Tech Stack</h2>
+          <h2
+            className="text-5xl md:text-7xl uppercase tracking-tight"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            Tech Stack
+          </h2>
         </ScrollReveal>
 
         <div className="mt-8 grid md:grid-cols-3 gap-4">
@@ -20,7 +25,7 @@ export default function Skills() {
                 </h3>
                 <div className="space-y-4">
                   {cat.skills.map((skill) => (
-                    <div key={skill.name} className="group">
+                    <div key={skill.name}>
                       <p className="text-sm font-semibold text-[var(--color-ink)]">
                         {skill.name}
                       </p>

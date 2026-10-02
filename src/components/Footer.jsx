@@ -10,7 +10,7 @@ export default function Footer() {
             <a
               key={label}
               href={`#${label.toLowerCase()}`}
-              className="text-xs font-mono text-[var(--color-muted)] hover:text-[var(--color-accent)] transition-colors"
+              className="text-xs font-mono text-[var(--color-muted)] hover:text-[var(--color-ink)] transition-colors"
             >
               {label}
             </a>

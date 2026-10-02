@@ -55,7 +55,12 @@ export default function Timeline() {
       <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
         <ScrollReveal>
           <p className="text-xs font-mono uppercase tracking-[0.3em] text-[var(--color-accent)] mb-3">Experience</p>
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight uppercase">Journey</h2>
+          <h2
+            className="text-5xl md:text-7xl uppercase tracking-tight"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            Journey
+          </h2>
         </ScrollReveal>
         <div className="mt-8 max-w-xl">
           {events.map((event) => (

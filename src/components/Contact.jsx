@@ -29,18 +29,30 @@ export default function Contact() {
         <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-start">
           <ScrollReveal className="md:col-span-6">
             <p className="text-xs font-mono uppercase tracking-[0.3em] text-[var(--color-accent)] mb-3">Contact</p>
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight uppercase">Let's Connect</h2>
-            <p className="mt-4 text-base md:text-lg text-[var(--color-muted)] leading-relaxed max-w-[48ch]">
-              Always open to discussing data science research, machine learning projects,
-              or software engineering opportunities.
+            <h2
+              className="text-5xl md:text-7xl uppercase tracking-tight"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              Let's Talk
+            </h2>
+            <h3
+              className="text-xl md:text-2xl italic mt-4"
+              style={{ fontFamily: 'var(--font-serif)' }}
+            >
+              Always open to new opportunities
+            </h3>
+            <p className="mt-3 text-base text-[var(--color-muted)] leading-relaxed max-w-[48ch]">
+              Interested in data science research, machine learning projects,
+              or software engineering roles? Let's connect.
             </p>
             <div className="mt-8">
               <a
                 href="/resume/Neel_Moradiya_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-7 py-3 rounded-full
-                           bg-[var(--color-accent)] text-[#0a0a0f] font-semibold
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full
+                           bg-[var(--color-ink)] text-[var(--color-paper)] font-bold
+                           uppercase tracking-wider text-sm
                            hover:opacity-90 transition-opacity active:scale-[0.97]"
               >
                 Download Resume
@@ -55,21 +67,19 @@ export default function Contact() {
                   href={s.href}
                   target={s.href.startsWith('mailto') ? undefined : '_blank'}
                   rel={s.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                  className="dash-card rounded-2xl p-5 flex items-center justify-between
-                             hover:border-[var(--color-accent)] transition-colors group block"
+                  className="glass-panel rounded-2xl p-5 flex items-center justify-between
+                             hover:shadow-lg transition-shadow group block"
                 >
                   <div className="flex items-center gap-4">
-                    <s.icon
-                      size={24}
-                      weight="duotone"
-                      className="text-[var(--color-accent)] group-hover:scale-110 transition-transform"
-                    />
+                    <div className="size-10 rounded-full bg-[var(--color-accent)] flex items-center justify-center">
+                      <s.icon size={20} weight="bold" className="text-white" />
+                    </div>
                     <div>
                       <p className="text-sm font-bold">{s.label}</p>
                       <p className="text-xs text-[var(--color-muted)] mt-0.5">{s.display}</p>
                     </div>
                   </div>
-                  <span className="text-sm text-[var(--color-muted)] group-hover:text-[var(--color-accent)] transition-colors">
+                  <span className="text-sm font-bold text-[var(--color-muted)] group-hover:text-[var(--color-accent)] transition-colors">
                     &#8599;
                   </span>
                 </a>
