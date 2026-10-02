@@ -21,73 +21,79 @@ export default function Nav() {
   }, [])
 
   return (
-    <nav className="nav-appear fixed top-4 inset-x-0 z-40 flex justify-center px-4">
-      <div
-        className={`nav-pill rounded-full px-2 py-1.5 flex items-center gap-1 transition-all duration-500 ${
-          scrolled ? 'shadow-lg' : ''
-        }`}
-      >
+    <nav
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
+        scrolled ? 'nav-glass' : ''
+      }`}
+    >
+      <div className="max-w-[1240px] mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
+        {/* Monogram */}
+        <a href="#" className="text-lg font-extrabold tracking-tight text-[var(--color-accent)]">
+          NM
+        </a>
+
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-0.5">
+        <div className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="text-sm font-medium px-4 py-2 rounded-full
-                         text-[var(--color-muted)] hover:text-[var(--color-ink)]
-                         hover:bg-[var(--color-surface)] transition-all duration-200"
+              className="text-sm font-medium text-[var(--color-muted)]
+                         hover:text-[var(--color-ink)] transition-colors duration-200"
             >
               {l.label}
             </a>
           ))}
-          <div className="w-px h-5 bg-[var(--color-line)] mx-1.5" />
+        </div>
+
+        {/* Right side */}
+        <div className="hidden md:flex items-center gap-3">
           <ThemeToggle />
           <a
             href="/resume/Neel_Moradiya_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium ml-1 px-4 py-2 rounded-full
-                       bg-[var(--color-accent)] text-white
-                       hover:opacity-90 transition-opacity active:scale-[0.98]"
+            className="text-sm font-semibold px-5 py-2 rounded-full
+                       bg-[var(--color-accent)] text-[#0a0a0f]
+                       hover:opacity-90 transition-opacity active:scale-[0.97]"
           >
             Resume
           </a>
         </div>
 
         {/* Mobile toggle */}
-        <div className="md:hidden flex items-center gap-2 px-2">
-          <span className="text-sm font-semibold font-[var(--font-display)] text-[var(--color-ink)]">NM</span>
-          <button
-            onClick={() => setOpen(!open)}
-            className="size-8 flex items-center justify-center rounded-full hover:bg-[var(--color-surface)] transition-colors cursor-pointer"
-            aria-label="Toggle menu"
-          >
-            {open ? <X size={18} /> : <List size={18} />}
-          </button>
-        </div>
+        <button
+          onClick={() => setOpen(!open)}
+          className="md:hidden size-9 flex items-center justify-center rounded-lg
+                     hover:bg-[var(--color-surface)] transition-colors cursor-pointer"
+          aria-label="Toggle menu"
+        >
+          {open ? <X size={20} /> : <List size={20} />}
+        </button>
       </div>
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden absolute top-full mt-2 left-4 right-4 nav-pill rounded-2xl px-4 py-5 space-y-3">
+        <div className="md:hidden nav-glass px-5 py-5 space-y-4 border-t border-[var(--color-line)]">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="block text-base font-medium text-[var(--color-muted)] hover:text-[var(--color-ink)] transition-colors"
+              className="block text-base font-medium text-[var(--color-muted)]
+                         hover:text-[var(--color-ink)] transition-colors"
             >
               {l.label}
             </a>
           ))}
-          <div className="flex items-center gap-3 pt-2 border-t border-[var(--color-line)]">
+          <div className="flex items-center gap-3 pt-3 border-t border-[var(--color-line)]">
             <ThemeToggle />
             <a
               href="/resume/Neel_Moradiya_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-medium px-4 py-2 rounded-full
-                         bg-[var(--color-accent)] text-white
+              className="text-sm font-semibold px-5 py-2 rounded-full
+                         bg-[var(--color-accent)] text-[#0a0a0f]
                          hover:opacity-90 transition-opacity"
             >
               Resume

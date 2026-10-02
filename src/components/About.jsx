@@ -13,7 +13,8 @@ export default function About() {
     <section id="about" className="py-10 md:py-12">
       <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
         <ScrollReveal>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>About</h2>
+          <p className="text-xs font-mono uppercase tracking-[0.3em] text-[var(--color-accent)] mb-3">About</p>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight uppercase">Who I Am</h2>
         </ScrollReveal>
 
         <div className="mt-8 grid md:grid-cols-12 gap-8 md:gap-12">
@@ -38,11 +39,11 @@ export default function About() {
               <ScrollReveal
                 key={h.label}
                 delay={i + 2}
-                className="glass-panel rounded-2xl p-5 flex flex-col gap-3"
+                className="dash-card rounded-2xl p-5 flex flex-col gap-3"
               >
                 <h.icon size={24} weight="duotone" className="text-[var(--color-accent)]" />
                 <div>
-                  <p className="text-sm font-semibold">{h.label}</p>
+                  <p className="text-sm font-bold">{h.label}</p>
                   <p className="text-xs text-[var(--color-muted)] mt-0.5">{h.detail}</p>
                 </div>
               </ScrollReveal>
