@@ -1,52 +1,41 @@
+export const GITHUB = 'https://github.com/NeelMoradiya196'
+export const repoUrl = (t) => `${GITHUB}?tab=repositories&q=${encodeURIComponent(t.toLowerCase().replace(/\s+/g, '-'))}`
+
 export const projects = [
-  {
-    title: 'RehabTrack',
+  { title: 'RehabTrack', kind: 'Live project', status: 'live', featured: true, tagline: 'Motion tracking for recovery.',
     description: 'Wearable rehabilitation device built in collaboration with KJ Somaiya Medical College and HOD. Real-time motion tracking for physiotherapy patients using IMU sensors and ML-based progress analysis.',
     stack: ['IoT', 'Python', 'ML', 'Wearable'],
-    status: 'live',
-    featured: true,
-  },
-  {
-    title: 'Deepfake Detector',
+    code: ['reading = imu.read()', 'angle = pose.estimate(reading)', 'session.log(angle)', '', 'if model.is_off_track(angle):', '    alert("Adjust your posture")'] },
+  { title: 'Deepfake Detector', kind: 'Computer vision', featured: true, tagline: 'Trust, but verify the frames.',
     description: 'Deep learning pipeline to detect manipulated media using frame-level analysis with PyTorch and OpenCV. Trained on FaceForensics++ dataset.',
     stack: ['Python', 'PyTorch', 'OpenCV'],
-    featured: true,
-  },
-  {
-    title: 'Process Mining',
+    code: ['frames = extract_frames(video, fps=5)', 'scores = [model(crop_face(f)) for f in frames]', '', 'verdict = "fake" if mean(scores) > 0.5 else "real"'] },
+  { title: 'Process Mining', kind: 'Process analytics', featured: true, tagline: 'Discover the process hidden in documents.',
     description: 'Automated process discovery from document workflows using OCR extraction, event log generation, and conformance checking with scikit-learn.',
     stack: ['Python', 'scikit-learn', 'PaddleOCR', 'Playwright'],
-    featured: true,
-  },
-  {
-    title: 'Knowledge Assistant',
+    code: ['text = ocr.extract(document)', 'log = build_event_log(text)', '', 'fitness = conformance_check(log, model)'] },
+  { title: 'Knowledge Assistant', kind: 'LLMs & RAG', featured: true, tagline: 'Ask your documents anything.',
     description: 'RAG-powered knowledge retrieval system with document ingestion, vector embeddings, and conversational interface built on FastAPI.',
     stack: ['LLMs', 'RAG', 'FastAPI', 'Python'],
-    featured: true,
-  },
-  {
-    title: 'Path-Finder',
+    code: ['chunks = splitter.split(doc)', 'index.add(embed(chunks))', '', 'context = index.search(query, k=4)', 'answer = llm(query, context)'] },
+  { title: 'Path-Finder', kind: 'Algorithms', tagline: 'Watch algorithms think.',
     description: 'Interactive visualization of graph traversal algorithms including Dijkstra, A*, BFS, and DFS with real-time animation on a grid canvas.',
     stack: ['TypeScript', 'React'],
-  },
-  {
-    title: 'Chatroom',
+    code: ['const path = astar(grid, start, goal);', '', 'animate(path, { delay: 20 });'] },
+  { title: 'Chatroom', kind: 'Android', tagline: 'Real-time, natively.',
     description: 'Real-time messaging application with authentication, message persistence, and push notifications built natively for Android.',
     stack: ['Kotlin', 'Jetpack Compose', 'Firebase'],
-  },
-  {
-    title: 'QTextEditor',
+    code: ['val messages by vm.messages.collectAsState()', '', 'LazyColumn {', '    items(messages) { MessageBubble(it) }', '}'] },
+  { title: 'QTextEditor', kind: 'Desktop', tagline: 'An editor, from scratch.',
     description: 'Feature-rich text editor with syntax highlighting, find-and-replace, and tabbed editing built from scratch using Qt framework.',
     stack: ['C++17', 'Qt'],
-  },
-  {
-    title: 'RC Car',
+    code: ['auto *tabs = new QTabWidget(this);', 'new Highlighter(editor->document());'] },
+  { title: 'RC Car', kind: 'Computer vision', tagline: 'Lanes in, steering out.',
     description: 'Computer vision-controlled RC car with lane detection and obstacle avoidance using OpenCV image processing pipeline.',
     stack: ['Python', 'OpenCV'],
-  },
-  {
-    title: 'Finance Tracker',
+    code: ['edges = cv2.Canny(frame, 80, 160)', 'lane = detect_lane(edges)', '', 'car.steer(lane.offset)'] },
+  { title: 'Finance Tracker', kind: 'Data & SQL', tagline: 'Know where it went.',
     description: 'Personal finance management tool with transaction categorization, budget tracking, and visual analytics dashboard.',
     stack: ['SQL', 'FastAPI', 'Python'],
-  },
+    code: ['SELECT category, SUM(amount)', 'FROM transactions', 'GROUP BY category', 'ORDER BY 2 DESC;'] },
 ]

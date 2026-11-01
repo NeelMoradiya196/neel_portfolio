@@ -1,109 +1,57 @@
-import { projects } from '../data/projects'
-import SpotlightCard from './SpotlightCard'
-import ScrollReveal from './ScrollReveal'
-import { ArrowUpRight, CircleNotch } from '@phosphor-icons/react'
+import { useState } from 'react'
+import { Copy, Check, GitBranch } from '@phosphor-icons/react'
+import { projects, repoUrl, GITHUB } from '../data/projects'
+import { Arrow, PageHead } from './ui'
+
+const filters = ['All', 'Python', 'TypeScript', 'Kotlin', 'C++17', 'SQL']
+const tok = /("[^"]*"|\b\d+\b|\b(?:const|val|if|else|for|in|new|auto|import|return|SELECT|FROM|GROUP|BY|ORDER|DESC|SUM)\b)/g
+const hl = (l) => l.split(tok).map((t, i) => (i % 2 ? <span key={i} className={t[0] === '"' ? 's' : /\d/.test(t[0]) ? 'n' : 'k'}>{t}</span> : t))
+const slug = (t) => t.toLowerCase().replace(/\s+/g, '-')
+
+function Pane({ p }) {
+  const [ok, setOk] = useState(false)
+  const copy = () => navigator.clipboard?.writeText(p.code.join('\n')).then(() => { setOk(true); setTimeout(() => setOk(false), 1600) })
+  return (
+    <div className="pane">
+      <header><i /><i /><i /><b>{slug(p.title)} / quick look</b>
+        <button onClick={copy} aria-label="Copy snippet">{ok ? <Check size={12} /> : <Copy size={12} />}{ok ? 'Copied' : 'Copy'}</button>
+      </header>
+      <pre><code>{p.code.map((l, i) => <div key={i}><em>{i + 1}</em><span>{hl(l)}</span></div>)}</code></pre>
+    </div>
+  )
+}
 
 export default function Projects() {
+  const [f, setF] = useState('All')
+  const list = projects.filter((p) => f === 'All' || p.stack.includes(f))
   return (
-    <section id="projects" className="py-10 md:py-12">
-      <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
-        <ScrollReveal>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight">Projects</h2>
-        </ScrollReveal>
-
-        {/* Featured projects */}
-        <div className="mt-10 grid md:grid-cols-2 gap-5">
-          {projects
-            .filter((p) => p.featured)
-            .map((project, i) => (
-              <ScrollReveal key={project.title} delay={i + 1}>
-                <SpotlightCard className="p-6 h-full flex flex-col">
-                  <div className="flex items-start justify-between gap-3">
-                    <h3 className="text-xl font-semibold tracking-tight">{project.title}</h3>
-                    <div className="flex items-center gap-2">
-                      {project.status === 'live' && (
-                        <span className="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded-full border border-emerald-500/40 text-emerald-600 dark:text-emerald-400 bg-emerald-500/10">
-                          <span className="size-1.5 rounded-full bg-emerald-500 animate-ping" />
-                          <span className="size-1.5 rounded-full bg-emerald-500 absolute" />
-                          Live
-                        </span>
-                      )}
-                      <a
-                        href="#"
-                        className="size-8 flex items-center justify-center rounded-full
-                                   border border-[var(--color-line)]
-                                   hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]
-                                   transition-colors"
-                        aria-label={`View ${project.title}`}
-                      >
-                        <ArrowUpRight size={16} />
-                      </a>
-                    </div>
-                  </div>
-
-                  <p className="mt-3 text-sm text-[var(--color-muted)] leading-relaxed flex-1">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5 mt-5">
-                    {project.stack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-xs font-mono px-2.5 py-1 rounded-full
-                                   bg-[var(--color-sky)] text-[var(--color-muted)]
-                                   border border-[var(--color-line)]"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </SpotlightCard>
-              </ScrollReveal>
-            ))}
+    <div className="top-pad">
+      <PageHead n="02" label="Built in the open" a="The workbench." b="Always in progress." sub="Models, tools, and experiments turned into code. Built to solve a problem, understand a system, or learn something new." />
+      <div className="wrap">
+        <div className="filters" role="group" aria-label="Filter projects">
+          {filters.map((x) => <button key={x} className={`fbtn ${f === x ? 'on' : ''}`} aria-pressed={f === x} onClick={() => setF(x)}>{x}</button>)}
+          <span className="sp" /><span className="lbl" style={{ fontSize: 10, letterSpacing: '.05em' }}>{list.length} projects / Built to learn</span>
         </div>
-
-        {/* Other projects */}
-        <div className="mt-5 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {projects
-            .filter((p) => !p.featured)
-            .map((project, i) => (
-              <ScrollReveal key={project.title} delay={i + 1}>
-                <SpotlightCard className="p-5 h-full flex flex-col">
-                  <div className="flex items-start justify-between gap-3">
-                    <h3 className="text-base font-semibold tracking-tight">{project.title}</h3>
-                    <a
-                      href="#"
-                      className="size-7 shrink-0 flex items-center justify-center rounded-full
-                                 border border-[var(--color-line)]
-                                 hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]
-                                 transition-colors"
-                      aria-label={`View ${project.title}`}
-                    >
-                      <ArrowUpRight size={14} />
-                    </a>
-                  </div>
-
-                  <p className="mt-2 text-xs text-[var(--color-muted)] leading-relaxed flex-1">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1 mt-4">
-                    {project.stack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-xs font-mono px-2 py-0.5 rounded-full
-                                   bg-[var(--color-sky)] text-[var(--color-muted)]
-                                   border border-[var(--color-line)]"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </SpotlightCard>
-              </ScrollReveal>
-            ))}
+        <div key={f}>
+          {list.map((p, i) => (
+            <article className="proj" key={p.title} style={{ animationDelay: `${i * 70}ms` }}>
+              <div>
+                <p className="lbl"><b>{String(i + 1).padStart(2, '0')}</b> / {p.kind}</p>
+                <h2 className="pn2">{slug(p.title)}<u>_</u></h2>
+                <h4>{p.tagline}</h4>
+                <p className="p">{p.description}</p>
+                <div className="tags">{p.stack.map((t, j) => <span key={t} className={`tag ${j ? '' : 'g'}`}>{t}</span>)}</div>
+                <div className="links">
+                  <a className="lnk" href={repoUrl(p.title)} target="_blank" rel="noopener noreferrer">Explore the project <Arrow size={14} /></a>
+                  <a className="lnk" href={GITHUB} target="_blank" rel="noopener noreferrer"><GitBranch size={15} /> Find on GitHub <Arrow size={12} /></a>
+                </div>
+              </div>
+              <Pane p={p} />
+            </article>
+          ))}
         </div>
+        <p className="fine" style={{ padding: '30px 0', borderTop: '1px solid var(--line)' }}>Code snippets are illustrative. GitHub links open repository searches on my profile.</p>
       </div>
-    </section>
+    </div>
   )
 }

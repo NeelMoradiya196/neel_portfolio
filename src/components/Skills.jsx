@@ -1,48 +1,29 @@
+import { Code, Brain, RocketLaunch } from '@phosphor-icons/react'
 import { skillCategories } from '../data/skills'
-import SpotlightCard from './SpotlightCard'
 import ScrollReveal from './ScrollReveal'
+import { PageHead } from './ui'
+
+const icons = [Code, Brain, RocketLaunch]
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-10 md:py-12">
-      <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
-        <ScrollReveal>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight">Skills</h2>
-        </ScrollReveal>
-
-        <div className="mt-10 grid md:grid-cols-3 gap-5">
-          {skillCategories.map((cat, catIdx) => (
-            <ScrollReveal key={cat.title} delay={catIdx + 1}>
-              <SpotlightCard className="p-6 h-full">
-                <h3 className="text-xs font-mono uppercase tracking-[0.25em] text-[var(--color-accent)] mb-5">
-                  {cat.title}
-                </h3>
-                <div className="space-y-4">
-                  {cat.skills.map((skill) => (
-                    <div key={skill.name} className="group">
-                      <p className="text-sm font-medium text-[var(--color-ink)]">
-                        {skill.name}
-                      </p>
-                      <div className="flex flex-wrap gap-1.5 mt-1.5">
-                        {skill.projects.map((proj) => (
-                          <span
-                            key={proj}
-                            className="text-xs font-mono px-2 py-0.5 rounded-full
-                                       bg-[var(--color-sky)] text-[var(--color-muted)]
-                                       border border-[var(--color-line)]"
-                          >
-                            {proj}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </SpotlightCard>
+    <div className="top-pad">
+      <PageHead n="01" label="The toolbox" a="Sharp tools." b="Used on real projects." sub="Every skill here is tied to something I actually built." />
+      <div className="wrap" style={{ paddingTop: 20 }}>
+        {skillCategories.map((c, i) => {
+          const Icon = icons[i]
+          return (
+            <ScrollReveal key={c.title} delay={i}>
+              <section className="row">
+                <span className="lbl">0{i + 1}</span><Icon size={26} aria-hidden="true" /><h3>{c.title}</h3>
+                <ul className="skl">
+                  {c.skills.map((s) => <li key={s.name}><b>{s.name}</b>{s.projects.map((p) => <em key={p}>{p}</em>)}</li>)}
+                </ul>
+              </section>
             </ScrollReveal>
-          ))}
-        </div>
+          )
+        })}
       </div>
-    </section>
+    </div>
   )
 }

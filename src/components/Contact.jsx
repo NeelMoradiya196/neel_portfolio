@@ -1,86 +1,51 @@
+import { useState } from 'react'
+import { Terminal, Copy, Check, EnvelopeSimple, GithubLogo, LinkedinLogo, FilePdf } from '@phosphor-icons/react'
 import ScrollReveal from './ScrollReveal'
-import { EnvelopeSimple, GithubLogo, LinkedinLogo } from '@phosphor-icons/react'
+import { Arrow, PageHead } from './ui'
+import { GITHUB } from '../data/projects'
 
+const EMAIL = 'contact@neelmoradiya.dev'
+const RESUME = '/resume/Neel_Moradiya_Resume.pdf'
 const socials = [
-  {
-    icon: EnvelopeSimple,
-    label: 'Email',
-    href: 'mailto:contact@neelmoradiya.dev',
-    display: 'Get in touch via email',
-  },
-  {
-    icon: GithubLogo,
-    label: 'GitHub',
-    href: 'https://github.com',
-    display: 'github.com',
-  },
-  {
-    icon: LinkedinLogo,
-    label: 'LinkedIn',
-    href: 'https://linkedin.com',
-    display: 'linkedin.com',
-  },
+  [EnvelopeSimple, 'Email', `mailto:${EMAIL}`, EMAIL],
+  [GithubLogo, 'GitHub', GITHUB, 'github.com/NeelMoradiya196'],
+  [LinkedinLogo, 'LinkedIn', 'https://linkedin.com', 'linkedin.com'],
+  [FilePdf, 'Resume', RESUME, 'Download PDF'],
 ]
+
+export function Cta() {
+  const [ok, setOk] = useState(false)
+  const copy = () => navigator.clipboard?.writeText(EMAIL).then(() => { setOk(true); setTimeout(() => setOk(false), 1800) })
+  return (
+    <ScrollReveal as="section" className="cta wrap">
+      <div className="ico"><Terminal size={22} aria-hidden="true" /></div>
+      <p className="lbl">Open for conversation</p>
+      <h2 className="h1">Got data?<i>Let's talk.</i></h2>
+      <p className="p">Data science research, machine learning projects, or software engineering opportunities.<br />Feel free to reach out.</p>
+      <div className="mail">
+        <span>&gt;</span>
+        <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        <button className="btn p1" onClick={copy} aria-live="polite">{ok ? 'Copied' : 'Copy email'} {ok ? <Check size={14} weight="bold" /> : <Copy size={14} />}</button>
+      </div>
+      <p className="fine">Prefer a quick look first? <a href={RESUME} target="_blank" rel="noopener noreferrer">Download my resume</a>.</p>
+    </ScrollReveal>
+  )
+}
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-10 md:py-12">
-      <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
-        <div className="grid md:grid-cols-12 gap-10 md:gap-14 items-start">
-          {/* Left - Headline */}
-          <ScrollReveal className="md:col-span-6">
-            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight">
-              Let's connect
-            </h2>
-            <p className="mt-4 text-base md:text-lg text-[var(--color-muted)] leading-relaxed max-w-[48ch]">
-              Always open to discussing data science research, machine learning projects,
-              or software engineering opportunities. Feel free to reach out.
-            </p>
-            <div className="mt-8">
-              <a
-                href="/resume/Neel_Moradiya_Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full
-                           bg-[var(--color-accent)] text-[var(--color-paper)] font-medium
-                           hover:opacity-90 transition-opacity active:scale-[0.98]"
-              >
-                Download Resume
-              </a>
-            </div>
+    <div className="top-pad">
+      <PageHead n="05" label="Let's connect" a="Say hello." b="Share an idea." sub="Always open to discussing data science research, machine learning projects, or software engineering opportunities." />
+      <div className="wrap">
+        {socials.map(([Icon, label, href, text], i) => (
+          <ScrollReveal key={label} delay={i}>
+            <a className="soc" href={href} {...(href.startsWith('mailto') ? {} : { target: '_blank', rel: 'noopener noreferrer' })}>
+              <Icon size={24} aria-hidden="true" /><h3>{label}</h3><span>{text} <Arrow /></span>
+            </a>
           </ScrollReveal>
-
-          {/* Right - Links */}
-          <div className="md:col-span-6 space-y-3">
-            {socials.map((s, i) => (
-              <ScrollReveal key={s.label} delay={i + 1}>
-                <a
-                  href={s.href}
-                  target={s.href.startsWith('mailto') ? undefined : '_blank'}
-                  rel={s.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                  className="glass-panel rounded-2xl p-5 flex items-center justify-between
-                             hover:border-[var(--color-accent)] transition-colors group"
-                >
-                  <div className="flex items-center gap-4">
-                    <s.icon
-                      size={24}
-                      weight="duotone"
-                      className="text-[var(--color-accent)] group-hover:scale-110 transition-transform"
-                    />
-                    <div>
-                      <p className="text-sm font-semibold">{s.label}</p>
-                      <p className="text-xs text-[var(--color-muted)] mt-0.5">{s.display}</p>
-                    </div>
-                  </div>
-                  <span className="text-xs font-mono text-[var(--color-muted)] group-hover:text-[var(--color-accent)] transition-colors">
-                    ↗
-                  </span>
-                </a>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
+        ))}
       </div>
-    </section>
+      <Cta />
+    </div>
   )
 }

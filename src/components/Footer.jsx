@@ -1,43 +1,19 @@
+import { ArrowUp } from '@phosphor-icons/react'
+import { Arrow } from './ui'
+import { GITHUB } from '../data/projects'
+
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--color-line)] py-12">
-      <div className="max-w-[1240px] mx-auto px-5 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-xs font-mono text-[var(--color-muted)]">
-          Designed and built by Neel Moradiya. 2026.
-        </p>
-
-        <div className="flex items-center gap-6">
-          <a
-            href="#about"
-            className="text-xs font-mono text-[var(--color-muted)] hover:text-[var(--color-ink)] transition-colors"
-          >
-            About
-          </a>
-          <a
-            href="#skills"
-            className="text-xs font-mono text-[var(--color-muted)] hover:text-[var(--color-ink)] transition-colors"
-          >
-            Skills
-          </a>
-          <a
-            href="#projects"
-            className="text-xs font-mono text-[var(--color-muted)] hover:text-[var(--color-ink)] transition-colors"
-          >
-            Projects
-          </a>
-          <a
-            href="#experience"
-            className="text-xs font-mono text-[var(--color-muted)] hover:text-[var(--color-ink)] transition-colors"
-          >
-            Experience
-          </a>
-          <a
-            href="#contact"
-            className="text-xs font-mono text-[var(--color-muted)] hover:text-[var(--color-ink)] transition-colors"
-          >
-            Contact
-          </a>
-        </div>
+    <footer className="foot wrap">
+      <p className="stay">// stay curious</p>
+      <div className="r1">
+        <div><a className="logo" href="#/">nm<span>_</span></a><span>Learn deeply. Build openly.</span></div>
+        <a className="lnk" href={GITHUB} target="_blank" rel="noopener noreferrer">Find me on GitHub <Arrow /></a>
+      </div>
+      <div className="r2">
+        <span>© 2026 Neel Moradiya</span>
+        <div><a href="#/about">About</a><a href="#/contact">Get in touch</a><a href="/resume/Neel_Moradiya_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></div>
+        <a href="#/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Back to top <ArrowUp size={12} style={{ verticalAlign: -2 }} /></a>
       </div>
     </footer>
   )

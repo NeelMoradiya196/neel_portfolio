@@ -1,81 +1,94 @@
-import GlassOrb from './GlassOrb'
-import { ArrowDown } from '@phosphor-icons/react'
+import { GithubLogo, Pulse, Scan } from '@phosphor-icons/react'
+import ScrollReveal from './ScrollReveal'
+import { Arrow, SecHead } from './ui'
+import { Notes } from './Timeline'
+import { Cta } from './Contact'
+import { GITHUB, projects } from '../data/projects'
 
-export default function Hero() {
+const pts = Array.from({ length: 28 }, (_, i) => {
+  const a = i * 2.399, r = Math.sqrt((i + 1) / 28)
+  return [50 + Math.cos(a) * r * 46, 50 + Math.sin(a) * r * 44]
+})
+const edges = pts.flatMap((p, i) => pts.slice(i + 1).map((q) => [p, q]).filter(([a, b]) => Math.hypot(a[0] - b[0], a[1] - b[1]) < 20))
+
+const tools = [['Python', '#e5c07b'], ['PyTorch', '#7aa2f7'], ['OpenCV', '#3ddc97'], ['scikit-learn', '#7ec4e0'], ['FastAPI', '#c4a7e7'], ['SQL', '#e5c07b']]
+
+export default function Intro() {
   return (
-    <section className="relative min-h-[100dvh] flex items-center overflow-hidden pt-16">
-      {/* Stars */}
-      <div className="stars absolute inset-0" />
-
-      {/* Meteors */}
-      <div className="meteor absolute top-[18%] right-[4%]" style={{ '--len': '120px', animationDelay: '1.2s' }} />
-      <div className="meteor absolute top-[32%] right-[-8%]" style={{ '--len': '180px', animationDelay: '3.8s' }} />
-      <div className="meteor absolute top-[12%] right-[20%]" style={{ '--len': '100px', animationDelay: '6.5s' }} />
-
-      <div className="max-w-[1240px] mx-auto w-full px-5 sm:px-8 flex flex-col md:flex-row items-center gap-10 md:gap-14">
-        {/* Left - Text */}
-        <div className="flex-1 order-2 md:order-1">
-          {/* Eyebrow */}
-          <p
-            className="appear text-xs sm:text-sm font-mono uppercase tracking-[0.25em] text-[var(--color-muted)] mb-5"
-          >
-            B.Tech IT - KJ Somaiya Institute of Technology
-          </p>
-
-          {/* Headline */}
-          <h1 className="text-[clamp(3.25rem,10vw,8.5rem)] font-semibold tracking-[-0.05em] leading-[0.86] flex flex-wrap gap-x-[0.22em]">
-            <span className="mask-word">
-              <span className="hero-word" style={{ '--w': 0 }}>Neel</span>
-            </span>
-            <span className="mask-word">
-              <span className="hero-word" style={{ '--w': 1 }}>Moradiya</span>
-            </span>
-          </h1>
-
-          {/* Subtext */}
-          <p
-            className="rise mt-6 text-base sm:text-lg text-[var(--color-muted)] leading-relaxed max-w-[58ch]"
-            style={{ '--i': 2 }}
-          >
-            Data science explorer building ML models,
-            mining real-world datasets, and shipping software.
-          </p>
-
-          {/* CTAs */}
-          <div className="rise flex flex-wrap gap-3 mt-8" style={{ '--i': 3 }}>
-            <a
-              href="#projects"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full
-                         bg-[var(--color-accent)] text-[var(--color-paper)] font-medium
-                         hover:opacity-90 transition-opacity active:scale-[0.98]"
-            >
-              View Projects
-            </a>
-            <a
-              href="/resume/Neel_Moradiya_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full
-                         border border-[var(--color-line)] text-[var(--color-ink)] font-medium
-                         hover:border-[var(--color-accent)] transition-colors active:scale-[0.98]"
-            >
-              Resume
-            </a>
+    <>
+      <section className="hero" aria-label="Introduction">
+        <div className="frame">
+          <div className="bg" aria-hidden="true">
+            <svg className="net" viewBox="0 0 100 100">
+              {edges.map(([a, b], i) => <line key={i} x1={a[0]} y1={a[1]} x2={b[0]} y2={b[1]} stroke="#3ddc97" strokeOpacity=".45" strokeWidth=".35" />)}
+              {pts.map(([x, y], i) => <circle key={i} cx={x} cy={y} r={1.1 + (i % 3) * 0.45} fill="#9fe3c4" style={{ animationDelay: `${(i % 7) * -1}s` }} />)}
+            </svg>
+            <img className="hero-img" src="/neel.jpg" width="800" height="1200" alt="" fetchpriority="high" />
+          </div>
+          <p className="cr tl"><i /> Building in the open</p>
+          <p className="cr tr">Data / ML / Systems</p>
+          <div className="hero-c">
+            <p className="lbl eyebrow">Data science &amp; ML explorer</p>
+            <h1 className="name" aria-label="Neel Moradiya">Neel<span>Moradiya<b className="dot">.</b></span></h1>
+            <p className="sub">I turn raw data into working models, explore real-world datasets, and ship software that makes sense of them.</p>
+            <div className="cta-row">
+              <a className="btn p1" href="#/projects">Explore my work <Arrow size={16} /></a>
+              <a className="btn p2" href="/resume/Neel_Moradiya_Resume.pdf" target="_blank" rel="noopener noreferrer">Read the resume <Arrow size={16} /></a>
+            </div>
+          </div>
+          <div className="cr bl"><span>Connect</span>
+            <a href={GITHUB} target="_blank" rel="noopener noreferrer"><GithubLogo size={14} /> GitHub <Arrow size={11} /></a>
+            <a href="#/contact">Let's talk <Arrow size={11} /></a>
+          </div>
+          <div className="cr br"><span style={{ letterSpacing: '.16em', textTransform: 'uppercase' }}>Currently into</span>
+            <span>Computer vision</span><span>RAG &amp; LLMs</span><span>Wearable ML</span>
           </div>
         </div>
+      </section>
 
-        {/* Right - Orb */}
-        <div className="flex-shrink-0 order-1 md:order-2">
-          <GlassOrb />
+      <section className="wrap sec" id="approach">
+        <div className="head"><p className="lbl"><b>01</b> / The approach</p><span className="dot" aria-hidden="true">+</span></div>
+        <div className="two">
+          <ScrollReveal><h2 className="h1">Raw data.<i>Real insight.</i></h2></ScrollReveal>
+          <ScrollReveal delay={1}>
+            <p className="p">I'm Neel, an Information Technology undergraduate at KJ Somaiya Institute of Technology, curious about data mining, statistical mathematics, and machine learning models.</p>
+            <p className="p">I love turning raw, complex data into meaningful insights and practical tools, and I learn best by building them.</p>
+            <div className="code"><small>// the short version</small><span className="k">while</span> (curious) {'{'} <span className="c">explore</span>(); <span className="c">model</span>(); <span className="c">ship</span>(); {'}'}</div>
+            <a className="lnk" href="#/about">A little more about me <Arrow size={16} /></a>
+          </ScrollReveal>
         </div>
-      </div>
+        <div className="tools"><span className="lbl" style={{ color: '#5d78a8' }}>My everyday toolkit</span>
+          <div>{tools.map(([t, c]) => <span key={t} style={{ color: c }}>{t}</span>)}</div>
+        </div>
+      </section>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 motion-reduce:hidden">
-        <div className="w-px h-8 overflow-hidden">
-          <div className="w-px h-3 bg-[var(--color-accent)] scroll-line" />
+      <section className="wrap sec" id="experience-preview">
+        <SecHead n="02" label="Where I've been" title="Learning by building" to="#/experience" cta="All experience" />
+        <Notes />
+        <ScrollReveal><a className="lnk" href="#/skills" style={{ margin: '28px 0 0', color: '#b89b6a' }}>More from the toolbox <Arrow size={16} /></a></ScrollReveal>
+      </section>
+
+      <section className="wrap sec" id="work">
+        <SecHead n="03" label="Built in the open" title="Less talk. More models" to="#/projects" cta="All projects" />
+        <div className="cards">
+          {projects.slice(0, 2).map((p, i) => {
+            const Icon = i ? Scan : Pulse
+            return (
+              <ScrollReveal key={p.title} delay={i}>
+                <a className="card" href="#/projects">
+                  <div className="art"><span className="lbl">0{i + 1} / {p.kind}</span><Icon size={72} weight="light" aria-hidden="true" /><small>{p.tagline}</small></div>
+                  <div className="cb">
+                    <div className="top"><h3 className="pn">{p.title.toLowerCase().replace(/\s+/g, '-')}<u>_</u></h3><Arrow size={16} /></div>
+                    <p>{p.description}</p>
+                    <div className="ft"><span><i />{p.stack[1]}</span><span>Project notes <Arrow size={11} /></span></div>
+                  </div>
+                </a>
+              </ScrollReveal>
+            )
+          })}
         </div>
-      </div>
-    </section>
+      </section>
+      <Cta />
+    </>
   )
 }
